@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew bootRun:*)",
+      "Bash(netstat:*)",
+      "Bash(taskkill //F //PID 34956)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
