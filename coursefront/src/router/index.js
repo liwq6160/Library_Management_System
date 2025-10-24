@@ -62,6 +62,30 @@ const routes = [
         name: 'CategoryManagement',
         component: () => import('@/views/CategoryManagement.vue'),
         meta: { title: '分类管理', requiresAuth: true, requiresAdmin: true }
+      },
+      {
+        path: 'my-borrows',
+        name: 'MyBorrowRecords',
+        component: () => import('@/views/MyBorrowRecords.vue'),
+        meta: { title: '我的借阅', requiresAuth: true }
+      },
+      {
+        path: 'borrow-management',
+        name: 'BorrowManagement',
+        component: () => import('@/views/BorrowManagement.vue'),
+        meta: { title: '借阅管理', requiresAuth: true, requiresAdmin: true }
+      },
+      {
+        path: 'overdue-records',
+        name: 'OverdueRecords',
+        component: () => import('@/views/OverdueRecords.vue'),
+        meta: { title: '逾期记录', requiresAuth: true, requiresAdmin: true }
+      },
+      {
+        path: 'borrow-statistics',
+        name: 'BorrowStatistics',
+        component: () => import('@/views/BorrowStatistics.vue'),
+        meta: { title: '借阅统计', requiresAuth: true, requiresAdmin: true }
       }
     ]
   }

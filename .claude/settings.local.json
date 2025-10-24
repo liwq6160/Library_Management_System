@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth status)",
+      "Bash(scoop install gh)",
+      "Bash(git remote add origin https://github.com/liwq6160/Library_Management_System.git)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: 图书信息管理系统项目初始化\n\n- 添加需求分析文档\n- 添加功能设计文档\n- 添加数据库初始化SQL脚本\n- 添加SpringBoot后端项目框架\n- 添加Vue前端项目框架\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push -u origin main)",
+      "Bash(./gradlew build -x test)",
+      "Bash(npm run dev)",
+      "Bash(git add bookmanager/ coursefront/)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: 实现用户管理和图书管理模块\n\n## 后端功能\n- 实现用户管理模块：注册、登录、JWT认证、权限控制\n- 实现图书管理模块：图书CRUD、分类管理、ISBN校验、封面上传\n- 添加统一异常处理和响应格式\n- 配置Jackson支持Java 8时间类型序列化\n\n## 前端功能  \n- 实现用户界面：登录、注册、个人中心、用户管理\n- 实现图书界面：图书列表、图书详情、图书管理、分类管理\n- 集成Element Plus UI框架\n- 使用Vue Router和Pinia进行路由和状态管理\n- 实现JWT token自动注入和刷新\n\n## 技术栈\n- 后端：Spring Boot 3 + MyBatis-Plus + JWT + MySQL\n- 前端：Vue 3 + Element Plus + Pinia + Vue Router + Axios\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push origin main)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -90,13 +90,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Picture, Reading, Clock } from '@element-plus/icons-vue'
 import { useBookStore } from '@/store/book'
+import { useBorrowStore } from '@/store/borrow'
 
 const route = useRoute()
 const router = useRouter()
 const bookStore = useBookStore()
+const borrowStore = useBorrowStore()
 
 const book = ref(null)
 
@@ -117,9 +119,26 @@ const goBack = () => {
 }
 
 // 借阅图书
-const handleBorrow = () => {
-  ElMessage.info('借阅功能将在借阅管理模块中实现')
-  // TODO: 实现借阅功能
+const handleBorrow = async () => {
+  try {
+    await ElMessageBox.confirm(
+      `确认借阅《${book.value.bookName}》吗？\n\n借阅期限：30天\n续借次数：最多1次\n注意事项：请按时归还，逾期将影响后续借阅。`,
+      '借阅确认',
+      {
+        confirmButtonText: '确定借阅',
+        cancelButtonText: '取消',
+        type: 'info'
+      }
+    )
+    await borrowStore.borrowBook(book.value.id)
+    ElMessage.success('借阅成功！您可以在"我的借阅"中查看借阅记录')
+    // 刷新图书详情
+    await fetchBookDetail()
+  } catch (error) {
+    if (error !== 'cancel') {
+      ElMessage.error(error.message || '借阅失败')
+    }
+  }
 }
 
 // 预约图书

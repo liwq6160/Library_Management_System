@@ -21,6 +21,10 @@
             <el-icon><Reading /></el-icon>
             <span>图书列表</span>
           </el-menu-item>
+          <el-menu-item index="/my-borrows">
+            <el-icon><Tickets /></el-icon>
+            <span>我的借阅</span>
+          </el-menu-item>
           <el-menu-item index="/profile">
             <el-icon><User /></el-icon>
             <span>个人中心</span>
@@ -41,6 +45,18 @@
             <el-menu-item index="/category-management">
               <el-icon><FolderOpened /></el-icon>
               <span>分类管理</span>
+            </el-menu-item>
+            <el-menu-item index="/borrow-management">
+              <el-icon><DocumentCopy /></el-icon>
+              <span>借阅管理</span>
+            </el-menu-item>
+            <el-menu-item index="/overdue-records">
+              <el-icon><Warning /></el-icon>
+              <span>逾期记录</span>
+            </el-menu-item>
+            <el-menu-item index="/borrow-statistics">
+              <el-icon><DataAnalysis /></el-icon>
+              <span>借阅统计</span>
             </el-menu-item>
           </el-sub-menu>
         </el-menu>
@@ -82,7 +98,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
-import { House, User, UserFilled, Avatar, Reading, Setting, Notebook, FolderOpened } from '@element-plus/icons-vue'
+import { House, User, UserFilled, Avatar, Reading, Setting, Notebook, FolderOpened, Tickets, DocumentCopy, Warning, DataAnalysis } from '@element-plus/icons-vue'
 import { ElMessageBox } from 'element-plus'
 
 const route = useRoute()
