@@ -86,6 +86,24 @@ const routes = [
         name: 'BorrowStatistics',
         component: () => import('@/views/BorrowStatistics.vue'),
         meta: { title: '借阅统计', requiresAuth: true, requiresAdmin: true }
+      },
+      {
+        path: 'my-reservations',
+        name: 'MyReservations',
+        component: () => import('@/views/MyReservations.vue'),
+        meta: { title: '我的预约', requiresAuth: true }
+      },
+      {
+        path: 'reservation-management',
+        name: 'ReservationManagement',
+        component: () => import('@/views/ReservationManagement.vue'),
+        meta: { title: '预约管理', requiresAuth: true, requiresAdmin: true }
+      },
+      {
+        path: 'reservation-statistics',
+        name: 'ReservationStatistics',
+        component: () => import('@/views/ReservationStatistics.vue'),
+        meta: { title: '预约统计', requiresAuth: true, requiresAdmin: true }
       }
     ]
   }

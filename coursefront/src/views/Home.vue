@@ -1,5 +1,8 @@
 <template>
   <div class="home-container">
+    <!-- 预约通知 -->
+    <reservation-notifications />
+
     <el-card>
       <h2>欢迎使用图书管理系统</h2>
       <p>当前用户：{{ userStore.realName || userStore.username }}</p>
@@ -10,6 +13,7 @@
 
 <script setup>
 import { useUserStore } from '@/store/user'
+import ReservationNotifications from '@/components/ReservationNotifications.vue'
 
 const userStore = useUserStore()
 </script>

@@ -10,7 +10,9 @@ import com.liwq.bookmanager.model.BorrowRecord;
 import com.liwq.bookmanager.model.User;
 import com.liwq.bookmanager.service.BorrowService;
 import com.liwq.bookmanager.service.BookService;
+import com.liwq.bookmanager.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -29,6 +31,7 @@ public class BorrowServiceImpl implements BorrowService {
     private final BorrowRecordMapper borrowRecordMapper;
     private final BookService bookService;
     private final UserMapper userMapper;
+    private final ReservationService reservationService;
 
     // 默认借阅期限（天）
     private static final int DEFAULT_BORROW_DAYS = 30;
@@ -39,10 +42,12 @@ public class BorrowServiceImpl implements BorrowService {
 
     public BorrowServiceImpl(BorrowRecordMapper borrowRecordMapper,
                               BookService bookService,
-                              UserMapper userMapper) {
+                              UserMapper userMapper,
+                              @Lazy ReservationService reservationService) {
         this.borrowRecordMapper = borrowRecordMapper;
         this.bookService = bookService;
         this.userMapper = userMapper;
+        this.reservationService = reservationService;
     }
 
     /**
@@ -156,6 +161,9 @@ public class BorrowServiceImpl implements BorrowService {
         bookService.increaseAvailableCount(record.getBookId());
 
         borrowRecordMapper.updateById(record);
+
+        // 处理预约通知：图书归还后检查是否有预约记录
+        reservationService.handleBookReturnNotification(record.getBookId());
     }
 
     @Override

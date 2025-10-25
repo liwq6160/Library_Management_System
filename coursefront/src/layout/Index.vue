@@ -25,6 +25,10 @@
             <el-icon><Tickets /></el-icon>
             <span>我的借阅</span>
           </el-menu-item>
+          <el-menu-item index="/my-reservations">
+            <el-icon><Clock /></el-icon>
+            <span>我的预约</span>
+          </el-menu-item>
           <el-menu-item index="/profile">
             <el-icon><User /></el-icon>
             <span>个人中心</span>
@@ -50,6 +54,10 @@
               <el-icon><DocumentCopy /></el-icon>
               <span>借阅管理</span>
             </el-menu-item>
+            <el-menu-item index="/reservation-management">
+              <el-icon><Calendar /></el-icon>
+              <span>预约管理</span>
+            </el-menu-item>
             <el-menu-item index="/overdue-records">
               <el-icon><Warning /></el-icon>
               <span>逾期记录</span>
@@ -57,6 +65,10 @@
             <el-menu-item index="/borrow-statistics">
               <el-icon><DataAnalysis /></el-icon>
               <span>借阅统计</span>
+            </el-menu-item>
+            <el-menu-item index="/reservation-statistics">
+              <el-icon><DataLine /></el-icon>
+              <span>预约统计</span>
             </el-menu-item>
           </el-sub-menu>
         </el-menu>
@@ -98,7 +110,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
-import { House, User, UserFilled, Avatar, Reading, Setting, Notebook, FolderOpened, Tickets, DocumentCopy, Warning, DataAnalysis } from '@element-plus/icons-vue'
+import { House, User, UserFilled, Avatar, Reading, Setting, Notebook, FolderOpened, Tickets, DocumentCopy, Warning, DataAnalysis, Clock, Calendar, DataLine } from '@element-plus/icons-vue'
 import { ElMessageBox } from 'element-plus'
 
 const route = useRoute()

@@ -84,6 +84,13 @@
     <el-card v-else>
       <el-skeleton :rows="10" animated />
     </el-card>
+
+    <!-- 预约弹窗 -->
+    <reservation-dialog
+      v-model="reservationDialogVisible"
+      :book-info="book"
+      @success="handleReservationSuccess"
+    />
   </div>
 </template>
 
@@ -94,6 +101,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { Picture, Reading, Clock } from '@element-plus/icons-vue'
 import { useBookStore } from '@/store/book'
 import { useBorrowStore } from '@/store/borrow'
+import ReservationDialog from '@/components/ReservationDialog.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -101,6 +109,7 @@ const bookStore = useBookStore()
 const borrowStore = useBorrowStore()
 
 const book = ref(null)
+const reservationDialogVisible = ref(false)
 
 // 获取图书详情
 const fetchBookDetail = async () => {
@@ -135,16 +144,23 @@ const handleBorrow = async () => {
     // 刷新图书详情
     await fetchBookDetail()
   } catch (error) {
-    if (error !== 'cancel') {
-      ElMessage.error(error.message || '借阅失败')
+    // 如果是用户取消操作，不显示错误
+    // 其他错误已经在 axios 拦截器中处理，不需要重复显示
+    if (error === 'cancel') {
+      // 用户取消操作，不做任何处理
     }
   }
 }
 
 // 预约图书
 const handleReserve = () => {
-  ElMessage.info('预约功能将在预约管理模块中实现')
-  // TODO: 实现预约功能
+  reservationDialogVisible.value = true
+}
+
+// 预约成功回调
+const handleReservationSuccess = () => {
+  // 成功消息已在 ReservationDialog 组件中显示，这里不需要重复显示
+  // 可以选择刷新页面或其他操作
 }
 
 onMounted(() => {
